@@ -1,5 +1,5 @@
 // DropdownCell.tsx
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 interface DropdownCellProps {
@@ -59,11 +59,11 @@ const DropdownCell: React.FC<DropdownCellProps> = ({
   // }, []);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full ">
       <button
         ref={buttonRef}
         onClick={toggleDropdown}
-        className={`w-full px-3 py-1.5 text-sm font-medium border border-[#D6E4FF] transition-all ${
+        className={`w-full px-3 py-1.5 -z-20 text-sm font-medium border border-[#D6E4FF] transition-all ${
           optionClasses[selected] || "bg-gray-200"
         }`}
       >
@@ -79,7 +79,7 @@ const DropdownCell: React.FC<DropdownCellProps> = ({
               top: dropdownPos.top,
               left: dropdownPos.left,
               transform: "translateX(-50%)", // 👈 center dropdown
-              zIndex: 50,
+              // zIndex: 50,
             }}
           >
             {/* Arrow / pointer */}

@@ -17,10 +17,10 @@ const Navbar = () => {
         <NotificationBell count={1} />
 
         <ProfileMenu onClick={() => setOpen(true)} />
-        <Drawer isOpen={open} onClose={() => setOpen(false)}>
-          <p className="z-50">No Notifications</p>
-        </Drawer>
       </div>
+      {/* <Drawer isOpen={open} onClose={() => setOpen(false)}>
+        <p className="">No Notifications</p>
+      </Drawer> */}
     </div>
   );
 };

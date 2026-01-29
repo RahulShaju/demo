@@ -1,6 +1,5 @@
 import { useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { createPortal } from "react-dom";
 
 type DrawerProps = {
   isOpen: boolean;
@@ -9,7 +8,7 @@ type DrawerProps = {
 };
 
 export default function Drawer({ isOpen, onClose, children }: DrawerProps) {
-  const portalRoot = document.getElementById("overlay-root");
+  // Close on ESC
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -18,7 +17,7 @@ export default function Drawer({ isOpen, onClose, children }: DrawerProps) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
-  // Lock body scroll
+  // Lock scroll when drawer is open
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -26,17 +25,14 @@ export default function Drawer({ isOpen, onClose, children }: DrawerProps) {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
-  if (!portalRoot) return null;
 
-  // Close on ESC
-
-  return createPortal(
+  return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop (fades everything underneath) */}
           <motion.div
-            className="fixed inset-0 bg-black/40 z-40"
+            className="fixed inset-0 bg-black/40 z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -46,7 +42,7 @@ export default function Drawer({ isOpen, onClose, children }: DrawerProps) {
           {/* Drawer */}
           <motion.aside
             className="fixed right-0 top-0 h-screen w-full sm:w-[420px]
-                       bg-white z-50 shadow-xl flex flex-col"
+                       rounded-l-lg bg-white z-50 shadow-xl flex flex-col"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -56,7 +52,6 @@ export default function Drawer({ isOpen, onClose, children }: DrawerProps) {
           </motion.aside>
         </>
       )}
-    </AnimatePresence>,
-    portalRoot,
+    </AnimatePresence>
   );
 }
