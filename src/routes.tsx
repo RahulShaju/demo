@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import ClientsPage from "./features/clients/pages/ClientsPage";
+import Dashboard from "./features/clients/pages/Dashboard";
 
 const AppRoutes = () => {
   return (
     <main className="pt-16 p-6">
       <Routes>
-        <Route path="/clients" element={<ClientsPage />} />
+        <Route path="/" element={<Dashboard />} />
       </Routes>
     </main>
   );

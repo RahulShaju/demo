@@ -2,10 +2,10 @@ import { FiHome, FiGrid, FiUser, FiSettings } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
-  { label: "Home", icon: FiHome, path: "/home" },
+  // { label: "Home", icon: FiHome, path: "/home" },
   { label: "Dashboard", icon: FiGrid, path: "/dashboard" },
-  { label: "Clients", icon: FiUser, path: "/clients" },
-  { label: "Settings", icon: FiSettings, path: "/settings" },
+  // { label: "Clients", icon: FiUser, path: "/clients" },
+  // { label: "Settings", icon: FiSettings, path: "/settings" },
 ];
 
 export default function Sidebar() {
